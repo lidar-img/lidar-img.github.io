@@ -1,11 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="description" content="LiDAR Signals for Robot Locomotion: Spherical Range Images Enable Robust Sim-to-Real Transfer." />
+  <title>LiDAR Signals for Robot Locomotion: Spherical Range Images Enable Robust Sim-to-Real Transfer</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <h1>Hello</h1>
+  <main class="paper">
+    <header class="paper-header">
+      <h2>LiDAR Signals for Robot Locomotion</h2>
+      <h2>Spherical Range Images Enable Robust Sim-to-Real Transfer</h2>
+      <p class="submission-status">In submission</p>
+    </header>
+
+    <section class="content-section method-section" id="method">
+      <h3>Approach.</h3>
+      <figure class="pipeline-figure"><img src="./pipeline.png" alt="Pipeline from real LiDAR measurements through scan-pattern replay and spherical range-image encoding to policy learning and deployment." /><figcaption>Recover frame-wise scan patterns, aggregate them over time, encode them on a sphere, and deploy the learned policy on the real robot.</figcaption></figure>
+    </section>
+
+    <section class="content-section" id="abstract">
+      <h3>Abstract.</h3>
+      <p>Existing legged-locomotion systems commonly rely on depth images or online elevation maps. However, depth-based policies suffer from perceptual sim-to-real discrepancies due to imperfect depth sensor modeling, while map-based approaches are vulnerable to drift and misalignment. LiDAR offers direct measurements of the surrounding geometry, but raw LiDAR scans lack a compact, structured representation for high-frequency control. We propose a LiDAR perception pipeline that maintains perceptual consistency across simulation and reality through sensing- and representation-level alignment. At the sensor level, we recover frame-wise angular sampling patterns from the physical LiDAR and replay them in simulation with GPU ray casting. At the representation level, simulated and real returns undergo the same spherical range image encoding, yielding a fixed-size policy observation for end-to-end training and direct deployment without teacher--student distillation, online elevation mapping, or adaptation. Experiments show that our range-image policies achieve stronger sim-to-real transfer than depth- and elevation-map-based baselines, while ablations confirm the importance of the proposed sensing components.</p>
+    </section>
+
+    <section class="content-section tasks-section" id="tasks">
+      <h3>Real-World Tasks.</h3>
+      <p>Step (0.45 m high), Gap (0.9 m wide), and Hurdle (0.4 m high). All videos loop at 1× speed and are muted by default.</p>
+      <div id="gallery"><div class="page-loading">Loading experiment records…</div></div>
+    </section>
+
+    <footer class="paper-footer"><span>LiDAR Signals for Robot Locomotion</span><span>Contact: <a href="mailto:ln23415@hotmail.com">ln23415@hotmail.com</a></span></footer>
+  </main>
+
+  <template id="pair-template">
+    <article class="task-section">
+      <header class="task-header"><div class="task-heading-left"><span class="pair-number"></span><div><p class="pair-category"></p><h4 class="pair-title"></h4></div></div><div class="task-heading-right"><span class="task-dimension"></span><span class="pair-bag"></span></div></header>
+      <p class="task-description"></p>
+      <div class="demo-grid" aria-label="Task demonstrations">
+        <figure class="demo-card"><div class="demo-card-head"><span class="demo-index">01</span><span class="demo-label">Demonstration 01</span></div><div class="demo-video-wrap"><video class="demo-video" controls autoplay muted loop playsinline preload="metadata"></video></div><figcaption>Real deployment recording</figcaption></figure>
+        <figure class="demo-card"><div class="demo-card-head"><span class="demo-index">02</span><span class="demo-label">Demonstration 02</span></div><div class="demo-video-wrap"><video class="demo-video" controls autoplay muted loop playsinline preload="metadata"></video></div><figcaption>Real deployment recording</figcaption></figure>
+      </div>
+      <div class="pair-grid">
+        <section class="module lidar-module" aria-label="Interactive LiDAR point cloud">
+          <div class="module-bar"><span><i class="module-square lidar-square"></i> INTERACTIVE LIDAR <em>/</em> /ln_test</span><span class="cloud-status"><i></i> Waiting to load</span></div>
+          <div class="visual"><div class="cloud-viewport"><canvas class="cloud-canvas" aria-label="Interactive colored 3D LiDAR point cloud"></canvas><div class="cloud-controls" role="group" aria-label="Point-cloud playback controls"><button type="button" class="play-toggle primary">Pause</button><button type="button" class="reset-view">Reset view</button></div><div class="cloud-loading">Loading point cloud…</div><div class="cloud-hint">Drag to orbit · Shift / right drag to pan · Scroll to zoom</div></div><div class="range-panel"><div class="range-panel-head"><span>RANGE IMAGE</span><span class="range-frame">—</span></div><div class="range-map"><canvas class="range-canvas" width="20" height="40" aria-label="Synchronized spherical range image"></canvas></div><div class="range-legend"><span>near</span><i></i><span>far</span></div></div></div>
+          <div class="lidar-controls"><input class="timeline" type="range" min="0" max="1000" value="0" aria-label="LiDAR playback progress" /><span class="time-label">0:00.00 / 0:00.00</span></div>
+        </section>
+        <section class="module video-module" aria-label="Corresponding field video"><div class="module-bar"><span><i class="module-square video-square"></i> FIELD VIDEO <em>/</em> SYNCHRONIZED RECORD</span><span class="video-name"></span></div><div class="video-wrap"><video class="field-video" controls autoplay muted loop playsinline preload="metadata"></video></div><div class="video-caption"><span class="video-filename"></span><span>Muted autoplay · use controls for sound</span></div></section>
+      </div>
+    </article>
+  </template>
+  <script defer src="./app.min.js"></script>
 </body>
 </html>
